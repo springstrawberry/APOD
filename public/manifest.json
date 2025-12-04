@@ -1,0 +1,23 @@
+{
+  "name": "NASA APOD Viewer",
+  "short_name": "APOD Viewer",
+  "description": "A modern web application for viewing NASA's Astronomy Picture of the Day",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/apod.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "entertainment", "science"],
+  "screenshots": [],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
+

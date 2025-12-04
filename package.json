@@ -1,8 +1,29 @@
 {
-  "name": "apod",
+  "name": "apod-viewer",
+  "version": "1.0.0",
+  "description": "A modern web application for viewing NASA's Astronomy Picture of the Day (APOD) with date navigation and HD downloads",
+  "author": "Denise Valerie",
+  "license": "MIT",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/denisevalerie/apod-viewer"
+  },
+  "keywords": [
+    "nasa",
+    "apod",
+    "astronomy",
+    "space",
+    "picture-of-the-day",
+    "react",
+    "typescript",
+    "vite"
+  ],
+  "bugs": {
+    "url": "https://github.com/denisevalerie/apod-viewer/issues"
+  },
+  "homepage": "https://github.com/denisevalerie/apod-viewer#readme",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
