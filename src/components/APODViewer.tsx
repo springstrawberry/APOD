@@ -307,35 +307,6 @@ export default function APODViewer() {
             )}
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-3 mb-6 flex-wrap">
-            {apodData.hdurl && (
-              <Button
-                asChild
-                className="bg-neutral-700 hover:bg-neutral-600 text-white hover:text-white"
-              >
-                <a href={apodData.hdurl} target="_blank" rel="noopener noreferrer">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download HD
-                </a>
-              </Button>
-            )}
-            <Button
-              variant="outline"
-              asChild
-              className="bg-neutral-800/50 border-neutral-700 text-neutral-100 hover:bg-neutral-700 hover:text-white hover:border-neutral-600"
-            >
-              <a
-                href={`https://apod.nasa.gov/apod/ap${apodData.date.replace(/-/g, '').slice(2)}.html`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View on NASA
-              </a>
-            </Button>
-          </div>
-
           {/* Explanation */}
           <div className="bg-black/30 backdrop-blur-sm border border-neutral-700/50 rounded-lg p-6">
             <h3 className="text-xl font-bold text-neutral-100 mb-3">Explanation</h3>
@@ -389,13 +360,6 @@ export default function APODViewer() {
             </p>
           </div>
           <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setShowNoApodDialog(false)}
-              className="bg-neutral-800 border-neutral-700 text-neutral-200 hover:bg-neutral-700"
-            >
-              Cancel
-            </Button>
             <Button
               onClick={handleDialogClose}
               className="bg-neutral-700 hover:bg-neutral-600 text-white"
