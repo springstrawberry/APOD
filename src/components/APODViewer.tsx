@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Download, ExternalLink, Loader2, ChevronLeft, ChevronRight, Info, AlertCircle } from 'lucide-react';
+import { Calendar, Loader2, ChevronLeft, ChevronRight, Info, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
