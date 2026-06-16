@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import type React from 'react';
 import { Calendar, Loader2, ChevronLeft, ChevronRight, Info, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -43,7 +44,8 @@ export default function APODViewer() {
       setApodData(data);
       setSelectedDate(dateToTry);
     } catch (err) {
-      // If today fails (404), try yesterday
+        const message = err instanceof Error ? err.message : 'Unknown error';
+        setError(message);
       try {
         dateToTry = getYesterdayDate();
         const data = await fetchAPOD(dateToTry);
@@ -77,7 +79,7 @@ export default function APODViewer() {
   }
 
   async function loadPreviousAvailableAPOD(requestedDate: string) {
-    let dateToTry = new Date(requestedDate);
+    const dateToTry = new Date(requestedDate);
     const oldestDate = new Date('1995-06-16');
     let attempts = 0;
     const maxAttempts = 7; // Try up to 7 days back
@@ -91,8 +93,10 @@ export default function APODViewer() {
         setApodData(data);
         setSelectedDate(formatDate(dateToTry));
         return;
-      } catch (err) {
-        // Continue to previous day
+        } catch (err) {
+        const message = err instanceof Error ? err.message : 'Unknown error';
+        setError(message);
+
         continue;
       }
     }
@@ -151,7 +155,7 @@ export default function APODViewer() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-neutral-950 via-neutral-900 to-neutral-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 text-neutral-200 animate-spin mx-auto mb-4" />
           <p className="text-neutral-200 text-lg">Loading Astronomy Picture...</p>
@@ -162,7 +166,7 @@ export default function APODViewer() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-neutral-950 via-neutral-900 to-neutral-800 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800 flex items-center justify-center p-4">
         <div className="bg-red-500/10 border border-red-500 rounded-lg p-6 max-w-md">
           <h2 className="text-red-400 text-xl font-bold mb-2">Error</h2>
           <p className="text-neutral-200">{error}</p>
@@ -324,18 +328,30 @@ export default function APODViewer() {
 
       {/* Footer */}
       <footer className="bg-black/30 backdrop-blur-sm border-t border-neutral-700/50 mt-12">
-        <div className="container mx-auto px-4 py-6 text-center text-neutral-400">
-          <p>
-            Data provided by{' '}
-            <a
-              href="https://www.nasa.gov"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-200 hover:text-white underline transition-colors"
-            >
-              NASA
-            </a>
-          </p>
+        <div className="container mx-auto px-4 py-6 text-neutral-400">
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2">
+            
+            {/* Left side */}
+            <p>
+              Developer: Denise Valerie O. Alin
+            </p>
+
+            {/* Right side */}
+            <p>
+              Data provided by{' '}
+              <a
+                href="https://www.nasa.gov"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-200 hover:text-white underline transition-colors"
+              >
+                NASA
+              </a>
+            </p>
+
+          </div>
+
         </div>
       </footer>
 
